@@ -2,26 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+    --gray-50: 249 250 251;
+    --gray-100: 243 244 246;
+    --gray-200: 229 231 235;
+    --gray-300: 209 213 219;
+    --gray-400: 156 163 175;
+    --gray-500: 107 114 128;
+    --gray-600: 75 85 99;
+    --gray-700: 55 65 81;
+    --gray-800: 31 41 55;
+    --gray-900: 17 24 39;
+    --gray-950: 3 7 18;
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    --watercourse-50: 239 250 246;
+    --watercourse-100: 217 242 230;
+    --watercourse-200: 181 229 209;
+    --watercourse-300: 132 209 182;
+    --watercourse-400: 82 181 150;
+    --watercourse-500: 47 154 123;
+    --watercourse-600: 32 123 100;
+    --watercourse-700: 27 104 86;
+    --watercourse-800: 23 78 66;
+    --watercourse-900: 19 65 55;
+    --watercourse-950: 10 36 31;
+
+    --bg: var(--gray-50);
+    --accent-bg: var(--gray-100);
+    --text: var(--gray-900);
+    --text-light: var(--gray-600);
+    --border: var(--gray-300);
+    --accent: var(--watercourse-600);
+    --accent-hover: var(--watercourse-700);
+    --accent-text: var(--gray-50);
+    --code: var(--watercourse-100);
+    --preformatted: var(--gray-100);
+    --marked: var(--watercourse-200);
+    --disabled: var(--gray-400);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: var(--gray-900);
+      --accent-bg: var(--gray-800);
+      --text: var(--gray-100);
+      --text-light: var(--gray-400);
+      --border: var(--gray-700);
+      --accent: var(--watercourse-400);
+      --accent-hover: var(--watercourse-300);
+      --accent-text: var(--gray-900);
+      --code: var(--watercourse-900);
+      --preformatted: var(--gray-800);
+      --marked: var(--watercourse-800);
+      --disabled: var(--gray-600);
+    }
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .bg-grid {
+        background-image:
+          linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .bg-grid {
+            background-image:
+              linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+    }
 }
