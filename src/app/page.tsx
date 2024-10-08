@@ -3,7 +3,7 @@ import avatar from "./images/avatar.jpg";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-grid">
+    <div className="min-h-screen flex flex-col items-center justify-center text-center gap-6 bg-grid">
       <Image
         className="rounded-full border border-border"
         src={avatar}
