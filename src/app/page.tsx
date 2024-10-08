@@ -26,6 +26,12 @@ export default function Home() {
           GitHub
         </a>
         <a
+          href="/resume.html"
+          className="px-4 py-2 bg-bg border border-border rounded hover:text-accent hover:border-accent transition-colors"
+        >
+          Resume
+        </a>
+        <a
           href="mailto:robert@robertanderson.xyz"
           className="px-4 py-2 bg-bg border border-border rounded hover:text-accent hover:border-accent transition-colors"
         >
