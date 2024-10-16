@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sourceSerif4.className} antialiased bg-bg text-text`}>
+      <body className={`${sourceSerif4.className} antialiased`}>
         {children}
       </body>
     </html>

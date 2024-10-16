@@ -1,5 +1,6 @@
 import Image from "next/image";
 import avatar from "./images/avatar.jpg";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -11,32 +12,20 @@ export default function Home() {
         width={200}
         height={200}
       />
-      <h1 className="text-5xl text-accent font-black">Robert Anderson</h1>
+      <h1 className="text-5xl text-primary font-black">Robert Anderson</h1>
       <p className="flex flex-row gap-2">
-        <a
-          href="https://www.linkedin.com/in/robert-anderson/"
-          className="px-4 py-2 bg-bg border border-border rounded hover:text-accent hover:border-accent transition-colors"
-        >
-          LinkedIn
-        </a>
-        <a
-          href="https://github.com/noisysocks"
-          className="px-4 py-2 bg-bg border border-border rounded hover:text-accent hover:border-accent transition-colors"
-        >
-          GitHub
-        </a>
-        <a
-          href="/resume.html"
-          className="px-4 py-2 bg-bg border border-border rounded hover:text-accent hover:border-accent transition-colors"
-        >
-          Resume
-        </a>
-        <a
-          href="mailto:robert@robertanderson.xyz"
-          className="px-4 py-2 bg-bg border border-border rounded hover:text-accent hover:border-accent transition-colors"
-        >
-          Email
-        </a>
+        <Button asChild variant="outline">
+          <a href="https://www.linkedin.com/in/robert-anderson/">LinkedIn</a>
+        </Button>
+        <Button asChild variant="outline">
+          <a href="https://github.com/noisysocks">GitHub</a>
+        </Button>
+        <Button asChild variant="outline">
+          <a href="/resume.html">Resume</a>
+        </Button>
+        <Button asChild variant="outline">
+          <a href="mailto:robert@robertanderson.xyz">Email</a>
+        </Button>
       </p>
     </div>
   );
