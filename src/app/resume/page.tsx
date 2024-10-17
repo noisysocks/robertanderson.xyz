@@ -24,28 +24,23 @@ function Header({ basics }: { basics: ResumeSchema["basics"] }) {
   if (!basics) return null;
   return (
     <header className="my-4 flex flex-wrap items-baseline justify-between gap-4">
-      {basics.name && <h1 className="text-2xl font-black">{basics.name}</h1>}
+      <h1 className="text-2xl font-black">{basics.name}</h1>
       <p>
-        {basics.profiles?.map((profile, index) => (
+        {basics.profiles?.map((profile) => (
           <Fragment key={profile.network}>
             <a className="text-primary underline" href={profile.url}>
               {profile.network}
             </a>
-            {index < basics.profiles!.length - 1 && <span>·</span>}
+            <DotSeparator />
           </Fragment>
         ))}
-        <span>·</span>
-        {basics.url && (
-          <a className="text-primary underline" href={basics.url}>
-            Website
-          </a>
-        )}
-        <span>·</span>
-        {basics.email && (
-          <a className="text-primary underline" href={`mailto:${basics.email}`}>
-            {basics.email}
-          </a>
-        )}
+        <a className="text-primary underline" href={basics.url}>
+          Website
+        </a>
+        <DotSeparator />
+        <a className="text-primary underline" href={`mailto:${basics.email}`}>
+          {basics.email}
+        </a>
       </p>
     </header>
   );
@@ -60,26 +55,28 @@ function Experience({ work }: { work: ResumeSchema["work"] }) {
         <article key={index}>
           <header className="my-4 flex flex-wrap items-baseline justify-between gap-4">
             <h3 className="font-medium">
-              {job.name} · {job.position}
+              {job.name}
+              <DotSeparator />
+              {job.position}
             </h3>
             <p>
-              {job.startDate}–{job.endDate} · {job.location}
+              {job.startDate}&ndash;{job.endDate}
+              <DotSeparator />
+              {job.location}
             </p>
           </header>
           <Markdown className="prose-lg my-4 leading-7 prose-a:text-primary prose-a:underline">
             {job.description}
           </Markdown>
-          {job.highlights && (
-            <ul className="pl-4">
-              {job.highlights.map((highlight, i) => (
-                <li key={i} className="list-middot">
-                  <Markdown className="prose-li:list-middot prose-lg leading-7 prose-p:my-0 prose-a:text-primary prose-a:underline prose-ul:my-0 prose-ul:pl-4 prose-li:my-0 prose-li:pl-0">
-                    {highlight}
-                  </Markdown>
-                </li>
-              ))}
-            </ul>
-          )}
+          <ul className="pl-4">
+            {job.highlights?.map((highlight, i) => (
+              <li key={i} className="list-middot">
+                <Markdown className="prose-li:list-middot prose-lg leading-7 prose-p:my-0 prose-a:text-primary prose-a:underline prose-ul:my-0 prose-ul:pl-4 prose-li:my-0 prose-li:pl-0">
+                  {highlight}
+                </Markdown>
+              </li>
+            ))}
+          </ul>
         </article>
       ))}
     </section>
@@ -87,7 +84,7 @@ function Experience({ work }: { work: ResumeSchema["work"] }) {
 }
 
 function Skills({ skills }: { skills: ResumeSchema["skills"] }) {
-  if (!skills) return null;
+  if (!skills?.length) return null;
   return (
     <section>
       <h2 className="my-4 font-bold">Skills</h2>
@@ -95,7 +92,7 @@ function Skills({ skills }: { skills: ResumeSchema["skills"] }) {
         {skills.map((skill, index) => (
           <Fragment key={index}>
             {skill.name}
-            {index < skills.length - 1 && <span>·</span>}
+            {index < skills.length - 1 && <DotSeparator />}
           </Fragment>
         ))}
       </p>
@@ -104,17 +101,25 @@ function Skills({ skills }: { skills: ResumeSchema["skills"] }) {
 }
 
 function Education({ education }: { education: ResumeSchema["education"] }) {
-  if (!education) return null;
+  if (!education?.length) return null;
   return (
     <section>
       <h2 className="my-4 font-bold">Education</h2>
       <ul>
         {education.map((edu, index) => (
           <li key={index}>
-            {edu.institution} · {edu.studyType} {edu.area} · {edu.endDate}
+            {edu.institution}
+            <DotSeparator />
+            {edu.studyType} {edu.area}
+            <DotSeparator />
+            {edu.endDate}
           </li>
         ))}
       </ul>
     </section>
   );
+}
+
+function DotSeparator() {
+  return <>&nbsp;&middot; </>;
 }
