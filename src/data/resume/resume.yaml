@@ -1,0 +1,77 @@
+$schema: node_modules/@jsonresume/schema/schema.json
+basics:
+  name: Robert Anderson
+  email: robert@robertanderson.xyz
+  url: https://robertanderson.xyz
+  profiles:
+    - network: LinkedIn
+      url: https://www.linkedin.com/in/robert-anderson/
+    - network: GitHub
+      url: https://github.com/noisysocks
+work:
+  - name: Automattic
+    position: Senior JavaScript Engineer
+    startDate: "2017"
+    endDate: "2024"
+    location: Remote
+    description: |
+      Automattic is the company behind WordPress.com, Jetpack and WooCommerce. I worked full time on the open source WordPress project which powers 43.5% of all websites.
+    highlights:
+      - "Key contributor to [Gutenberg](https://github.com/wordpress/gutenberg), a React-based visual site editor used by ~329 million WordPress sites."
+      - "Led development of major features including the [Grid block](https://wordpress.org/documentation/article/grid-block/), [Style Book](https://developer.wordpress.org/news/2023/06/21/the-style-book-a-one-stop-shop-for-styling-block-themes/), [Widgets Editor](https://wordpress.org/documentation/article/block-based-widgets-editor/) and [reusable blocks](https://wordpress.org/documentation/article/reusable-blocks/)."
+      - "Optimised usability, accessibility, and performance of critical UI components such as the page editor, publish flow, and date picker."
+      - "WordPress Core Committer and Editor Tech Lead for [WordPress 5.7](https://wordpress.org/news/2021/03/esperanza/) and [WordPress 5.9](https://wordpress.org/news/2022/01/josephine/). Oversaw merging of full site editing functionality into core allowing millions to edit all aspects of their site."
+      - "Managed a team of 6 engineers for 17 months. Contributed to a fun and collaborative culture, conducted regular 1:1s, and provided structured feedback. During this time, the team's [CultureAmp engagement score](https://www.cultureamp.com/blog/employee-engagement-guide) increased from 58% to 95%."
+      - "Actively maintained the open-source project: triaged issues, reviewed code contributions, and fostered community participation among 1,366 contributors."
+  - name: Tumblr
+    position: Senior Product Engineer
+    startDate: "2015"
+    endDate: "2017"
+    location: New York, NY
+    description: |
+      [Tumblr](https://about.tumblr.com/) is an influential social network that served 25.2 million users in 2017. I was a member of the Posts team and worked across the stack to build post creation tools.
+    highlights:
+      - "Led development of [Neue Post Format (NPF)](https://engineering.tumblr.com/post/164826109535/building-the-tumblr-neue-post-format), a JSON-based specification replacing HTML for Tumblr's 150+ billion posts, improving security, performance, and extensibility for mobile apps."
+      - "Implemented [Live Photo support in the iOS app](https://www.theverge.com/2015/12/10/9886668/tumblr-ios-live-photo-support-added), prompting Apple to feature Tumblr in the App Store."
+      - "Added audio post creation to the iOS app, generating ~2,000 additional posts daily."
+      - "Built the PHP backend for [live video on Tumblr](https://techcrunch.com/2016/06/21/tumblr-launches-live-video-support-in-partnership-with-youtube-younow-and-others/), driving ~500,000 additional push notifications per day."
+      - "Constructed React and Ember.js prototypes of Tumblr to evaluate feasibility of [modernising the legacy PHP/Backbone.js frontend](https://javascript.tumblr.com/post/172624931022/a-big-new-beautiful-future-for-the-web-at-tumblr)."
+  - name: XO Digital
+    position: Software Engineer
+    startDate: "2014"
+    endDate: "2015"
+    location: Sydney, Australia
+    description: At this web agency, I built PHP websites using Craft CMS and an iOS & Android app for a major gym brand using Backbone.js and Phonegap.
+  - name: Creative Licence Digital
+    position: Software Engineer
+    startDate: "2013"
+    endDate: "2013"
+    location: Sydney, Australia
+    description: At this award-winning mobile app agency, I worked on interactive iPad JavaScript apps, Node.js REST APIs, and a native iPhone app with over 700k downloads.
+  - name: Izilla
+    position: Web Developer
+    startDate: "2010"
+    endDate: "2012"
+    location: Newcastle, Australia
+    description: Started my career at this agency, where I built ASP.NET websites for national clients, a jQuery Mobile site for a large e-commerce platform, and a native iPhone app for a major mutual bank.
+skills:
+  - name: HTML/CSS
+  - name: JavaScript
+  - name: TypeScript
+  - name: React
+  - name: Redux
+  - name: Node.js
+  - name: PHP
+  - name: REST APIs
+  - name: MySQL
+  - name: Git
+  - name: Jest
+  - name: Playwright
+  - name: Storybook
+  - name: CI/CD
+  - name: Swift
+  - name: Objective-C
+education:
+  - institution: University of New South Wales
+    area: Computer Science
+    studyType: BS
