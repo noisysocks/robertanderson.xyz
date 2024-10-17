@@ -8,7 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { Braces, Code, Download, MessageCircle } from "lucide-react";
+import { MessageCircle, Printer } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function Toolbar() {
@@ -42,9 +42,9 @@ export function Toolbar() {
   return (
     <div
       className={cn(
-        "md:bg-transparent fixed bottom-0 left-0 right-0 z-10 flex gap-1 bg-card/75 p-4 backdrop-blur transition-opacity md:bottom-auto md:top-0 md:backdrop-blur-none print:hidden",
+        "fixed bottom-0 left-0 right-0 z-10 flex gap-1 bg-card/75 p-4 backdrop-blur transition-opacity lg:bottom-auto lg:top-0 lg:bg-transparent lg:backdrop-blur-none print:hidden",
         {
-          "md:opacity-0": !isVisible,
+          "lg:opacity-0": !isVisible,
         },
       )}
     >
@@ -62,32 +62,16 @@ export function Toolbar() {
         <div className="flex-grow" />
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button variant="outline" size="icon">
-              <Code />
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => window.print()}
+            >
+              <Printer />
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>View source</p>
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline" size="icon">
-              <Braces />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Download JSON</p>
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline" size="icon">
-              <Download />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Download PDF</p>
+            <p>Print</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
