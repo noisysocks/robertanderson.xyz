@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-center gap-6 bg-grid">
+    <div className="bg-grid flex min-h-screen flex-col items-center justify-center gap-6 text-center">
       <Image
         className="rounded-full border border-border"
         src={avatar}
@@ -12,7 +12,7 @@ export default function Home() {
         width={200}
         height={200}
       />
-      <h1 className="text-5xl text-primary font-black">Robert Anderson</h1>
+      <h1 className="text-5xl font-black text-primary">Robert Anderson</h1>
       <p className="flex flex-row gap-2">
         <Button asChild variant="outline">
           <a href="https://www.linkedin.com/in/robert-anderson/">LinkedIn</a>

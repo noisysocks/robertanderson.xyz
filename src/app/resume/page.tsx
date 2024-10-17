@@ -9,7 +9,7 @@ export default function Resume() {
     fs.readFileSync("./src/data/resume/resume.yaml", "utf8"),
   ) as ResumeSchema;
   return (
-    <div className="text-lg font-light text-pretty screen:max-w-[80ch] screen:mx-auto screen:p-4 print:text-xs print:mx-10 print:my-5">
+    <div className="text-pretty text-lg font-light screen:mx-auto screen:max-w-[80ch] screen:p-4 print:mx-10 print:my-5 print:text-xs">
       <Header basics={data.basics} />
       <main>
         <Experience work={data.work} />
@@ -23,7 +23,7 @@ export default function Resume() {
 function Header({ basics }: { basics: ResumeSchema["basics"] }) {
   if (!basics) return null;
   return (
-    <header className="flex items-baseline flex-wrap gap-4 justify-between my-4">
+    <header className="my-4 flex flex-wrap items-baseline justify-between gap-4">
       {basics.name && <h1 className="text-2xl font-black">{basics.name}</h1>}
       <p>
         {basics.profiles?.map((profile, index) => (
@@ -58,7 +58,7 @@ function Experience({ work }: { work: ResumeSchema["work"] }) {
       <h2 className="my-4 font-bold">Experience</h2>
       {work.map((job, index) => (
         <article key={index}>
-          <header className="flex items-baseline flex-wrap gap-4 justify-between my-4">
+          <header className="my-4 flex flex-wrap items-baseline justify-between gap-4">
             <h3 className="font-medium">
               {job.name} · {job.position}
             </h3>
@@ -66,14 +66,14 @@ function Experience({ work }: { work: ResumeSchema["work"] }) {
               {job.startDate}–{job.endDate} · {job.location}
             </p>
           </header>
-          <Markdown className="my-4 prose-lg leading-7 prose-a:text-primary prose-a:underline">
+          <Markdown className="prose-lg my-4 leading-7 prose-a:text-primary prose-a:underline">
             {job.description}
           </Markdown>
           {job.highlights && (
             <ul className="pl-4">
               {job.highlights.map((highlight, i) => (
                 <li key={i} className="list-middot">
-                  <Markdown className="prose-lg leading-7 prose-p:my-0 prose-ul:my-0 prose-li:my-0 prose-ul:pl-4 prose-li:pl-0 prose-li:list-middot prose-a:text-primary prose-a:underline">
+                  <Markdown className="prose-li:list-middot prose-lg leading-7 prose-p:my-0 prose-a:text-primary prose-a:underline prose-ul:my-0 prose-ul:pl-4 prose-li:my-0 prose-li:pl-0">
                     {highlight}
                   </Markdown>
                 </li>
