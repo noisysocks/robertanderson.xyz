@@ -12,7 +12,7 @@ export default function Resume() {
   return (
     <>
       <Toolbar />
-      <div className="text-pretty text-lg font-light screen:mx-auto screen:max-w-[80ch] screen:p-4 screen:pb-[76px] screen:lg:pb-4 print:text-xs">
+      <div className="text-pretty text-lg font-light screen:mx-auto screen:max-w-[80ch] screen:p-4 screen:pt-[76px] screen:lg:pt-4 print:text-xs">
         <Header basics={data.basics} />
         <main>
           <Experience work={data.work} />

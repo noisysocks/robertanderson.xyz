@@ -42,7 +42,7 @@ export function Toolbar() {
   return (
     <div
       className={cn(
-        "fixed bottom-0 left-0 right-0 z-10 flex gap-1 bg-card/75 p-4 backdrop-blur transition-opacity lg:bottom-auto lg:top-0 lg:bg-transparent lg:backdrop-blur-none print:hidden",
+        "fixed left-0 right-0 top-0 z-10 flex gap-1 border-b bg-card/75 p-4 backdrop-blur transition-opacity lg:bg-transparent lg:backdrop-blur-none print:hidden",
         {
           "lg:opacity-0": !isVisible,
         },
