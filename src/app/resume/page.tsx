@@ -1,22 +1,26 @@
-import yaml from "js-yaml";
-import fs from "fs";
 import { ResumeSchema } from "@/types/resume-schema";
+import fs from "fs";
+import yaml from "js-yaml";
 import { Fragment } from "react";
 import Markdown from "react-markdown";
+import { Toolbar } from "./toolbar";
 
 export default function Resume() {
   const data = yaml.load(
     fs.readFileSync("./src/data/resume/resume.yaml", "utf8"),
   ) as ResumeSchema;
   return (
-    <div className="text-pretty text-lg font-light screen:mx-auto screen:max-w-[80ch] screen:p-4 print:mx-10 print:my-5 print:text-xs">
-      <Header basics={data.basics} />
-      <main>
-        <Experience work={data.work} />
-        <Skills skills={data.skills} />
-        <Education education={data.education} />
-      </main>
-    </div>
+    <>
+      <Toolbar />
+      <div className="text-pretty text-lg font-light screen:mx-auto screen:max-w-[80ch] screen:p-4 screen:pb-[76px] screen:md:pb-4 print:mx-10 print:my-5 print:text-xs">
+        <Header basics={data.basics} />
+        <main>
+          <Experience work={data.work} />
+          <Skills skills={data.skills} />
+          <Education education={data.education} />
+        </main>
+      </div>
+    </>
   );
 }
 

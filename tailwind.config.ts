@@ -22,6 +22,7 @@ const config: Config = {
       },
     },
     colors: {
+      transparent: "transparent",
       background: "hsl(var(--background))",
       foreground: "hsl(var(--foreground))",
       card: {
