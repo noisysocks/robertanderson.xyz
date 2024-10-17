@@ -3,87 +3,89 @@
 @tailwind utilities;
 
 @layer base {
-    /*
-        Generated using https://uicolors.app and https://themes.fkaya.dev
-        Light color: #207b64 (600)
-        Dark color: #52b597 (400)
-    */
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 0 0% 5%;
-        --card: 0 0% 100%;
-        --card-foreground: 0 0% 5%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 5%;
-        --primary: 165 59% 30%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 0 0% 96%;
-        --secondary-foreground: 0 0% 5%;
-        --muted: 0 0% 96%;
-        --muted-foreground: 0 0% 45%;
-        --accent: 0 0% 96%;
-        --accent-foreground: 0 0% 5%;
-        --destructive: 0 84% 60%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 92%;
-        --input: 0 0% 85%;
-        --ring: 0 0% 76%;
-        --radius: 0.5rem;
-    }
-    .dark {
-        --background: 180 3% 6%;
-        --foreground: 0 0% 98%;
-        --card: 180 6% 7%;
-        --card-foreground: 0 0% 98%;
-        --popover: 180 6% 7%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 162 40% 52%;
-        --primary-foreground: 0 0% 2%;
-        --secondary: 150 5% 15%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 160 5% 22%;
-        --muted-foreground: 160 5% 49%;
-        --accent: 162 45% 14%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 84% 60%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 160 5% 12%;
-        --input: 165 4% 18%;
-        --ring: 162 40% 40%;
-    }
+  /*
+    Theme generated using https://uicolors.app and https://themes.fkaya.dev
+    Light color: #207b64 (600)
+    Dark color: #52b597 (400)
+  */
 
-    * {
-        @apply border-border;
-    }
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+    --primary: 165 59% 30%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 92%;
+    --input: 0 0% 85%;
+    --ring: 0 0% 76%;
+    --radius: 0.5rem;
+  }
 
-    body {
-        @apply bg-background text-foreground;
-    }
+  .dark {
+    --background: 180 3% 6%;
+    --foreground: 0 0% 98%;
+    --card: 180 6% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 180 6% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 162 40% 52%;
+    --primary-foreground: 0 0% 2%;
+    --secondary: 150 5% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 160 5% 22%;
+    --muted-foreground: 160 5% 49%;
+    --accent: 162 45% 14%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 160 5% 12%;
+    --input: 165 4% 18%;
+    --ring: 162 40% 40%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 @layer utilities {
-    .bg-grid {
-        background-image: linear-gradient(
-                to right,
-                rgba(0, 0, 0, 0.05) 1px,
-                transparent 1px
-            ),
-            linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-        background-size: 20px 20px;
-    }
+  .bg-grid {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
 
-    @media (prefers-color-scheme: dark) {
-        .bg-grid {
-            background-image: linear-gradient(
-                    to right,
-                    rgba(255, 255, 255, 0.05) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    to bottom,
-                    rgba(255, 255, 255, 0.05) 1px,
-                    transparent 1px
-                );
-        }
-    }
+  .dark .bg-grid {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  .list-middot::before {
+    content: "·";
+    margin-left: -1rem;
+    position: absolute;
+  }
 }

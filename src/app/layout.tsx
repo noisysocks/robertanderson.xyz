@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${sourceSerif4.className} antialiased`}>
+      <body className={sourceSerif4.className}>
         <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>
     </html>
