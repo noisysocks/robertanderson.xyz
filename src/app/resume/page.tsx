@@ -65,13 +65,13 @@ function Experience({ work }: { work: ResumeSchema["work"] }) {
               {job.location}
             </p>
           </header>
-          <Markdown className="prose-lg my-4 leading-7 prose-a:text-primary prose-a:underline">
+          <Markdown className="[&_a]:text-primary [&_a]:underline">
             {job.description}
           </Markdown>
           <ul className="pl-4">
             {job.highlights?.map((highlight, i) => (
               <li key={i} className="list-middot">
-                <Markdown className="prose-li:list-middot prose-lg leading-7 prose-p:my-0 prose-a:text-primary prose-a:underline prose-ul:my-0 prose-ul:pl-4 prose-li:my-0 prose-li:pl-0">
+                <Markdown className="[&_li]:list-middot [&_a]:text-primary [&_a]:underline [&_ul]:pl-4">
                   {highlight}
                 </Markdown>
               </li>
