@@ -1,6 +1,7 @@
 import Image from "next/image";
 import avatar from "./images/avatar.jpg";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
           <a href="https://github.com/noisysocks">GitHub</a>
         </Button>
         <Button asChild variant="outline">
-          <a href="/resume.html">Resume</a>
+          <Link href="/resume">Resume</Link>
         </Button>
         <Button asChild variant="outline">
           <a href="mailto:robert@robertanderson.xyz">Email</a>
