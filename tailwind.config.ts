@@ -64,6 +64,10 @@ const config: Config = {
         "5": "hsl(var(--chart-5))",
       },
     },
+    fontFamily: {
+      sans: ["var(--font-source-sans)"],
+      serif: ["var(--font-source-serif)"],
+    },
   },
   plugins: [animate],
 };
