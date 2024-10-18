@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useIsScreen } from "@/components/use-is-screen";
+import { useIsMobile } from "@/components/use-is-mobile";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { createContext, ReactNode, useContext, useState } from "react";
@@ -33,9 +33,9 @@ export function useInterface() {
 
 export function InterfaceSidebar({ children }: { children: ReactNode }) {
   const { isSidebarOpen, toggleSidebar } = useInterface();
-  const isMediumScreen = useIsScreen("md");
+  const isMobile = useIsMobile(false);
 
-  if (isSidebarOpen && !isMediumScreen) {
+  if (isSidebarOpen && isMobile) {
     return (
       <>
         <header className="flex gap-1 border-b p-4">
@@ -67,8 +67,8 @@ export function InterfaceSidebar({ children }: { children: ReactNode }) {
 
 export function InterfaceToolbar({ children }: { children: ReactNode }) {
   const { isSidebarOpen } = useInterface();
-  const isMediumScreen = useIsScreen("md");
-  if (isSidebarOpen && !isMediumScreen) return null;
+  const isMobile = useIsMobile(false);
+  if (isSidebarOpen && isMobile) return null;
   return (
     <motion.header
       className="fixed right-0 top-0 z-10 flex gap-1 border-b bg-card/75 p-4 backdrop-blur lg:border-none lg:bg-transparent lg:backdrop-blur-none print:hidden"
@@ -85,8 +85,8 @@ export function InterfaceToolbar({ children }: { children: ReactNode }) {
 
 export function InterfaceContent({ children }: { children: ReactNode }) {
   const { isSidebarOpen } = useInterface();
-  const isMediumScreen = useIsScreen("md");
-  if (isSidebarOpen && !isMediumScreen) return null;
+  const isMobile = useIsMobile(false);
+  if (isSidebarOpen && isMobile) return null;
   return (
     <motion.main
       className="screen:absolute screen:right-0 screen:mt-[57px] screen:lg:mt-0"
