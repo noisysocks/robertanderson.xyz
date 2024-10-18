@@ -3,104 +3,70 @@
 import { Button } from "@/components/ui/button";
 import {
   ChatBubble,
-  ChatBubbleAvatar,
   ChatBubbleMessage,
 } from "@/components/ui/chat/chat-bubble";
 import { ChatInput } from "@/components/ui/chat/chat-input";
 import { ChatMessageList } from "@/components/ui/chat/chat-message-list";
+import { cn } from "@/lib/utils";
+import { useChat } from "ai/react";
 import { Send } from "lucide-react";
 
 export function Chat() {
+  const { messages, isLoading, input, handleInputChange, handleSubmit } =
+    useChat({
+      id: "resume",
+      initialMessages: [
+        {
+          id: "initial-1",
+          content:
+            "Hey! I am a digital likeness of the real Robert Anderson. Ask me questions about my resume and I'll do my best to answer.",
+          role: "assistant",
+        },
+      ],
+    });
+
   return (
     <div className="flex h-full flex-col p-4">
       <ChatMessageList>
-        <ChatBubble variant="sent">
-          <ChatBubbleMessage variant="sent">
-            Hello, how has your day been? I hope you are doing well.
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" variant="received">
-            Hi, I am doing well, thank you for asking. How can I help you today?
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" isLoading />
-        </ChatBubble>
-        <ChatBubble variant="sent">
-          <ChatBubbleMessage variant="sent">
-            Hello, how has your day been? I hope you are doing well.
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" variant="received">
-            Hi, I am doing well, thank you for asking. How can I help you today?
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" isLoading />
-        </ChatBubble>
-        <ChatBubble variant="sent">
-          <ChatBubbleMessage variant="sent">
-            Hello, how has your day been? I hope you are doing well.
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" variant="received">
-            Hi, I am doing well, thank you for asking. How can I help you today?
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" isLoading />
-        </ChatBubble>
-        <ChatBubble variant="sent">
-          <ChatBubbleMessage variant="sent">
-            Hello, how has your day been? I hope you are doing well.
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" variant="received">
-            Hi, I am doing well, thank you for asking. How can I help you today?
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" isLoading />
-        </ChatBubble>
-        <ChatBubble variant="sent">
-          <ChatBubbleMessage variant="sent">
-            Hello, how has your day been? I hope you are doing well.
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" variant="received">
-            Hi, I am doing well, thank you for asking. How can I help you today?
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" isLoading />
-        </ChatBubble>
-        <ChatBubble variant="sent">
-          <ChatBubbleMessage variant="sent">
-            Hello, how has your day been? I hope you are doing well.
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" variant="received">
-            Hi, I am doing well, thank you for asking. How can I help you today?
-          </ChatBubbleMessage>
-        </ChatBubble>
-        <ChatBubble variant="received">
-          <ChatBubbleMessage className="bg-card" isLoading />
-        </ChatBubble>
+        {messages.map((message) => {
+          const variant = message.role == "user" ? "sent" : "received";
+          return (
+            <ChatBubble key={message.id} variant={variant}>
+              <ChatBubbleMessage
+                className={cn({
+                  "bg-card": variant === "received",
+                })}
+                variant={variant}
+              >
+                {message.content}
+              </ChatBubbleMessage>
+            </ChatBubble>
+          );
+        })}
+        {isLoading && (
+          <ChatBubble variant="received">
+            <ChatBubbleMessage className="bg-card" isLoading />
+          </ChatBubble>
+        )}
       </ChatMessageList>
-      <form className="relative">
-        <ChatInput className="w-full pr-12" />
+      <form className="relative" onSubmit={handleSubmit}>
+        <ChatInput
+          className="w-full pr-12"
+          value={input}
+          onChange={handleInputChange}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" && !event.shiftKey) {
+              event.preventDefault();
+              handleSubmit(event);
+            }
+          }}
+        />
         <Button
           className="absolute right-2 top-1/2 -translate-y-1/2"
           type="submit"
           size="icon"
         >
-          <Send className="" />
+          <Send />
         </Button>
       </form>
     </div>
