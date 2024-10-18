@@ -1,3 +1,4 @@
+import { Chat } from "./chat";
 import {
   Interface,
   InterfaceContent,
@@ -11,7 +12,9 @@ export default function ResumePage() {
   return (
     <div>
       <Interface>
-        <InterfaceSidebar>chat goes here</InterfaceSidebar>
+        <InterfaceSidebar>
+          <Chat />
+        </InterfaceSidebar>
         <InterfaceToolbar>
           <ToolbarControls />
         </InterfaceToolbar>

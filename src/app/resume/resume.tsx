@@ -9,7 +9,7 @@ export function Resume() {
     fs.readFileSync("./src/data/resume/resume.yaml", "utf8"),
   ) as ResumeSchema;
   return (
-    <div className="text-pretty text-lg font-light screen:mx-auto screen:max-w-[80ch] screen:p-4 print:text-xs">
+    <div className="text-pretty font-serif text-lg font-light screen:mx-auto screen:max-w-[80ch] screen:p-4 print:text-xs">
       <Header basics={resume.basics} />
       <Experience work={resume.work} />
       <Skills skills={resume.skills} />

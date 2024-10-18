@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${sourceSans3.variable} ${sourceSerif4.variable} font-serif antialiased`}
+        className={`${sourceSans3.variable} ${sourceSerif4.variable} font-sans antialiased`}
       >
         <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>

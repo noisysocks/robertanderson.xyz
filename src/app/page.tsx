@@ -13,7 +13,9 @@ export default function Home() {
         width={200}
         height={200}
       />
-      <h1 className="text-5xl font-black text-primary">Robert Anderson</h1>
+      <h1 className="font-serif text-5xl font-black text-primary">
+        Robert Anderson
+      </h1>
       <p className="flex flex-row gap-2">
         <Button asChild variant="outline">
           <a href="https://www.linkedin.com/in/robert-anderson/">LinkedIn</a>
