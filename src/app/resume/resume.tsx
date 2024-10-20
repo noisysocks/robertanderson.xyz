@@ -21,7 +21,7 @@ export function Resume() {
 function Header({ basics }: { basics: ResumeSchema["basics"] }) {
   if (!basics) return null;
   return (
-    <header className="my-4 flex flex-wrap items-baseline justify-between gap-4">
+    <header className="my-4 flex flex-col items-center gap-4 text-center md:flex-row md:items-baseline md:justify-between">
       <h1 className="text-2xl font-black">{basics.name}</h1>
       <p>
         {basics.profiles?.map((profile) => (
