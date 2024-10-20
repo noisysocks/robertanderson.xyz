@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="bg-grid flex min-h-screen flex-col items-center justify-center gap-6 text-center">
+    <div className="bg-grid flex min-h-screen flex-col items-center justify-center gap-6 bg-secondary text-center">
       <Image
-        className="rounded-full border border-border"
+        className="rounded-full border"
         src={avatar}
         alt="Picture of Robert Anderson"
         width={200}
