@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useIsMobile } from "@/components/use-is-mobile";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { createContext, ReactNode, useContext, useState } from "react";
@@ -33,7 +33,7 @@ export function useInterface() {
 
 export function InterfaceSidebar({ children }: { children: ReactNode }) {
   const { isSidebarOpen, toggleSidebar } = useInterface();
-  const isMobile = useIsMobile(false);
+  const isMobile = useIsMobile();
 
   if (isSidebarOpen && isMobile) {
     return (
@@ -67,7 +67,7 @@ export function InterfaceSidebar({ children }: { children: ReactNode }) {
 
 export function InterfaceToolbar({ children }: { children: ReactNode }) {
   const { isSidebarOpen } = useInterface();
-  const isMobile = useIsMobile(false);
+  const isMobile = useIsMobile();
   if (isSidebarOpen && isMobile) return null;
   return (
     <motion.header
@@ -85,7 +85,7 @@ export function InterfaceToolbar({ children }: { children: ReactNode }) {
 
 export function InterfaceContent({ children }: { children: ReactNode }) {
   const { isSidebarOpen } = useInterface();
-  const isMobile = useIsMobile(false);
+  const isMobile = useIsMobile();
   if (isSidebarOpen && isMobile) return null;
   return (
     <motion.main

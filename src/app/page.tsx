@@ -3,7 +3,7 @@ import avatar from "./images/avatar.jpg";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="bg-grid flex min-h-screen flex-col items-center justify-center gap-6 bg-secondary text-center">
       <Image
