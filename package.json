@@ -6,7 +6,7 @@
     "dev": "npm run generate-types && next dev",
     "build": "npm run generate-types && next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "concurrently 'prettier --check .' 'next lint'",
     "generate-types": "json2ts node_modules/@jsonresume/schema/schema.json ./src/types/resume-schema.ts"
   },
   "dependencies": {
@@ -45,6 +45,7 @@
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "concurrently": "^9.0.1",
     "drizzle-kit": "^0.26.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
