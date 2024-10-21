@@ -96,6 +96,13 @@ export function Chat({ initialMessage }: { initialMessage?: string }) {
           <Send />
         </Button>
       </form>
+      <p className="mt-2 text-center text-xs">
+        Take responses with a grain of salt. Messages are shared with{" "}
+        <a className="underline" href="https://www.anthropic.com">
+          Anthropic
+        </a>{" "}
+        and not stored.
+      </p>
     </div>
   );
 }
