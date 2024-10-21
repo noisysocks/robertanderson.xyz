@@ -1,13 +1,10 @@
+import { getResume } from "@/lib/resume";
 import { ResumeSchema } from "@/types/resume-schema";
-import fs from "fs";
-import yaml from "js-yaml";
 import { Fragment } from "react";
 import Markdown from "react-markdown";
 
 export function Resume() {
-  const resume = yaml.load(
-    fs.readFileSync("./src/data/resume/resume.yaml", "utf8"),
-  ) as ResumeSchema;
+  const resume = getResume();
   return (
     <div className="text-pretty font-serif text-lg font-light screen:mx-auto screen:max-w-[80ch] screen:p-4 print:text-xs">
       <Header basics={resume.basics} />

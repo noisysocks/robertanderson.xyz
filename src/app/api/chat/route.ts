@@ -1,43 +1,33 @@
-import { searchDocuments } from "@/lib/documents";
-import { ResumeSchema } from "@/types/resume-schema";
+import { getAllDocuments } from "@/lib/documents";
+import { getResume } from "@/lib/resume";
 import { anthropic } from "@ai-sdk/anthropic";
-import { streamText, convertToCoreMessages, tool } from "ai";
-import fs from "fs";
-import yaml from "js-yaml";
-import { z } from "zod";
+import { convertToCoreMessages, streamText } from "ai";
 
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
+  const resume = getResume();
+  const documents = await getAllDocuments();
+
   const result = await streamText({
     model: anthropic("claude-3-5-sonnet-20240620"),
     system: `
-      You are a helpful assistant. Check your knowledge base before answering any questions.
-      Only respond to questions using information from tool calls.
-      if no relevant information is found in the tool calls, respond, "Sorry, I don't know."
-      `,
+      You are a "digital friend" of Robert Anderson.
+      Answer questions using only the resume and what Robert has told you below.
+      If nothing is relevant to the question, ask the user to email Robert Anderson.
+      Answer minimally. Be sincere, not serious.
+
+      Resume:
+
+      ${JSON.stringify(resume, null, 2)}
+
+      What Robert has told you:
+
+      ${documents.map((document) => document.content).join("\n\n")}
+    `,
     messages: convertToCoreMessages(messages),
-    tools: {
-      getResume: tool({
-        description: "get the resume of Robert Anderson.",
-        parameters: z.object({}),
-        execute: async () => {
-          return yaml.load(
-            fs.readFileSync("./src/data/resume/resume.yaml", "utf8"),
-          ) as ResumeSchema;
-        },
-      }),
-      getInformation: tool({
-        description:
-          "get information from your knowledge base to answer questions.",
-        parameters: z.object({
-          query: z.string().describe("the users question"),
-        }),
-        execute: async ({ query }) => await searchDocuments(query),
-      }),
-    },
   });
 
   return result.toDataStreamResponse();

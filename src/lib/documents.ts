@@ -60,6 +60,10 @@ export async function searchDocuments(query: string) {
   return rows;
 }
 
+export async function getAllDocuments() {
+  return db.query.documents.findMany();
+}
+
 async function embed(input: string, inputType: "document" | "query") {
   const client = new VoyageAIClient({ apiKey: process.env.VOYAGEAI_API_KEY });
 

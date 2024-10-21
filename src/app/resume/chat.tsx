@@ -19,7 +19,7 @@ export function Chat() {
         {
           id: "initial-1",
           content:
-            "Hey! I am a digital likeness of the real Robert Anderson. Ask me questions about my resume and I'll do my best to answer.",
+            "Hi! I'm Robert's digital friend.\n\nTake a look at his resume on the right and ask me any questions you have.",
           role: "assistant",
         },
       ],
