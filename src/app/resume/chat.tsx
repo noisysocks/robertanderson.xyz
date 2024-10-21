@@ -23,6 +23,7 @@ export function Chat() {
           role: "assistant",
         },
       ],
+      maxSteps: 3,
     });
 
   return (

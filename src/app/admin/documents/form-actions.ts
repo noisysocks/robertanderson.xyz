@@ -1,15 +1,14 @@
 "use server";
 
-import { db } from "@/db";
-import { documents } from "@/db/schema";
 import { checkAdminAuth } from "@/lib/auth";
-import { eq } from "drizzle-orm";
-import { createInsertSchema } from "drizzle-zod";
 import { redirect } from "next/navigation";
 import { documentFormSchema } from "./form-schema";
 import { z } from "zod";
-
-const schema = createInsertSchema(documents).omit({ id: true });
+import {
+  createDocument,
+  updateDocument,
+  deleteDocument as _deleteDocument,
+} from "@/lib/documents";
 
 export async function saveDocument(
   id: number | undefined,
@@ -19,16 +18,16 @@ export async function saveDocument(
     throw new Error("Unauthorized");
   }
 
-  const { success, data, error } = schema.safeParse(formData);
+  const { success, data, error } = documentFormSchema.safeParse(formData);
 
   if (!success) {
     throw error.message;
   }
 
   if (id) {
-    await db.update(documents).set(data).where(eq(documents.id, id));
+    await updateDocument(id, data);
   } else {
-    await db.insert(documents).values(data);
+    await createDocument(data);
   }
 
   redirect("/admin/documents");
@@ -39,7 +38,7 @@ export async function deleteDocument(id: number) {
     throw new Error("Unauthorized");
   }
 
-  await db.delete(documents).where(eq(documents.id, id));
+  await _deleteDocument(id);
 
   redirect("/admin/documents");
 }
