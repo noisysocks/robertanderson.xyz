@@ -1,3 +1,4 @@
+import { getPrompt } from "@/lib/prompts";
 import { Chat } from "./chat";
 import {
   Interface,
@@ -8,12 +9,18 @@ import {
 import { Resume } from "./resume";
 import { ToolbarControls } from "./toolbar-controls";
 
-export default function ResumePage() {
+export default async function ResumePage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const { chat } = searchParams;
+  const prompt = typeof chat === "string" ? await getPrompt(chat) : undefined;
   return (
     <div>
-      <Interface>
+      <Interface sidebarOpen={!!chat}>
         <InterfaceSidebar>
-          <Chat />
+          <Chat initialMessage={prompt?.prompt} />
         </InterfaceSidebar>
         <InterfaceToolbar>
           <ToolbarControls />

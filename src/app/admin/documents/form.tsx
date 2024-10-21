@@ -27,9 +27,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import Link from "next/link";
-import { useState } from "react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle } from "lucide-react";
 import { documentFormSchema } from "./form-schema";
 
 type DocumentFormProps = {
@@ -42,29 +39,12 @@ export function DocumentForm({ document }: DocumentFormProps) {
     defaultValues: document,
   });
 
-  const [serverError, setServerError] = useState<string | undefined>(undefined);
-
   const action: () => void = form.handleSubmit(async (data) => {
-    try {
-      await saveDocument(document?.id, data);
-    } catch (error) {
-      if (typeof error === "string") {
-        setServerError(error);
-      } else {
-        throw error;
-      }
-    }
+    await saveDocument(document?.id, data);
   });
 
   return (
     <>
-      {serverError && (
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{serverError}</AlertDescription>
-        </Alert>
-      )}
       <Form {...form}>
         <form className="space-y-4" action={action}>
           <FormField

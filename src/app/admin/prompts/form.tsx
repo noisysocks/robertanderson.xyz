@@ -32,6 +32,7 @@ import { promptFormSchema } from "./form-schema";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { DuplicatePromptError } from "@/lib/prompts";
 
 type PromptFormProps = {
   prompt?: typeof prompts.$inferSelect;
@@ -43,13 +44,13 @@ export function PromptForm({ prompt }: PromptFormProps) {
     defaultValues: prompt,
   });
 
-  const [serverError, setServerError] = useState<string | undefined>(undefined);
+  const [serverError, setServerError] = useState<Error | undefined>();
 
   const action: () => void = form.handleSubmit(async (data) => {
     try {
       await savePrompt(prompt?.id, data);
     } catch (error) {
-      if (typeof error === "string") {
+      if (error instanceof DuplicatePromptError) {
         setServerError(error);
       } else {
         throw error;
@@ -63,7 +64,7 @@ export function PromptForm({ prompt }: PromptFormProps) {
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{serverError}</AlertDescription>
+          <AlertDescription>{serverError.message}</AlertDescription>
         </Alert>
       )}
       <Form {...form}>

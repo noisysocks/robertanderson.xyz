@@ -18,11 +18,7 @@ export async function saveDocument(
     throw new Error("Unauthorized");
   }
 
-  const { success, data, error } = documentFormSchema.safeParse(formData);
-
-  if (!success) {
-    throw error.message;
-  }
+  const data = documentFormSchema.parse(formData);
 
   if (id) {
     await updateDocument(id, data);

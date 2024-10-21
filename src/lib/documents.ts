@@ -1,4 +1,4 @@
-import { cosineDistance, desc, eq, gt, sql } from "drizzle-orm";
+import { cosineDistance, desc, eq, sql } from "drizzle-orm";
 import { documents } from "@/db/schema";
 import { db } from "@/db";
 import { VoyageAIClient } from "voyageai";

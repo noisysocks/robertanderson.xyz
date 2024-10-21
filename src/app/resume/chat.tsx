@@ -11,19 +11,19 @@ import { cn } from "@/lib/utils";
 import { useChat } from "ai/react";
 import { Send } from "lucide-react";
 
-export function Chat() {
+export function Chat({ initialMessage }: { initialMessage?: string }) {
   const { messages, isLoading, input, handleInputChange, handleSubmit } =
     useChat({
       id: "resume",
       initialMessages: [
         {
-          id: "initial-1",
+          id: "initial",
           content:
+            initialMessage ??
             "Hi! I'm Robert's digital friend.\n\nTake a look at his resume on the right and ask me any questions you have.",
           role: "assistant",
         },
       ],
-      maxSteps: 3,
     });
 
   return (

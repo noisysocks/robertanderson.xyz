@@ -13,8 +13,14 @@ type InterfaceContext = {
 
 const InterfaceContext = createContext<InterfaceContext | undefined>(undefined);
 
-export function Interface({ children }: { children: ReactNode }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+export function Interface({
+  sidebarOpen = false,
+  children,
+}: {
+  sidebarOpen?: boolean;
+  children: ReactNode;
+}) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(sidebarOpen);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   return (
     <InterfaceContext.Provider value={{ isSidebarOpen, toggleSidebar }}>
