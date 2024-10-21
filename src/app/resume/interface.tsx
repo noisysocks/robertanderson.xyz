@@ -6,6 +6,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { createContext, ReactNode, useContext, useState } from "react";
 
+const SIDEBAR_WIDTH = 350;
+
 type InterfaceContext = {
   isSidebarOpen: boolean;
   toggleSidebar: () => void;
@@ -58,10 +60,11 @@ export function InterfaceSidebar({ children }: { children: ReactNode }) {
     <AnimatePresence>
       {isSidebarOpen && (
         <motion.aside
-          className="fixed h-full w-[300px] border-r bg-secondary print:hidden"
-          initial={{ x: -300 }}
+          className={`fixed h-full border-r bg-secondary print:hidden`}
+          initial={{ x: -SIDEBAR_WIDTH }}
           animate={{ x: 0 }}
-          exit={{ x: -300 }}
+          exit={{ x: -SIDEBAR_WIDTH }}
+          style={{ width: SIDEBAR_WIDTH }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
         >
           {children}
@@ -80,7 +83,7 @@ export function InterfaceToolbar({ children }: { children: ReactNode }) {
       className="fixed right-0 top-0 z-10 flex gap-1 border-b bg-card/75 p-4 backdrop-blur lg:border-none lg:bg-transparent lg:backdrop-blur-none print:hidden"
       initial={{ left: 0 }}
       animate={{
-        left: isSidebarOpen ? 300 : 0,
+        left: isSidebarOpen ? SIDEBAR_WIDTH : 0,
       }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
     >
@@ -98,7 +101,7 @@ export function InterfaceContent({ children }: { children: ReactNode }) {
       className="screen:absolute screen:right-0 screen:mt-[57px] screen:lg:mt-0"
       initial={{ left: 0 }}
       animate={{
-        left: isSidebarOpen ? 300 : 0,
+        left: isSidebarOpen ? SIDEBAR_WIDTH : 0,
       }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
     >

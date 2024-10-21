@@ -36,7 +36,7 @@ export function Chat({ initialMessage }: { initialMessage?: string }) {
   });
 
   return (
-    <div className="flex h-full flex-col p-4">
+    <div className="flex h-full flex-col">
       <ChatMessageList>
         {messages.map((message) => {
           const variant = message.role == "user" ? "sent" : "received";
@@ -59,50 +59,52 @@ export function Chat({ initialMessage }: { initialMessage?: string }) {
           </ChatBubble>
         )}
       </ChatMessageList>
-      {error && (
-        <Alert variant="destructive" className="my-4">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Uh oh</AlertTitle>
-          <AlertDescription className="flex flex-col">
-            An unexpected error occurred while sending your message.
-            <Button
-              variant="outline"
-              size="sm"
-              className="mt-2 w-min"
-              onClick={() => reload()}
-            >
-              Try again
-            </Button>
-          </AlertDescription>
-        </Alert>
-      )}
-      <form className="relative" onSubmit={handleSubmit}>
-        <ChatInput
-          className="w-full pr-12"
-          value={input}
-          onChange={handleInputChange}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" && !event.shiftKey) {
-              event.preventDefault();
-              handleSubmit(event);
-            }
-          }}
-        />
-        <Button
-          className="absolute right-2 top-1/2 -translate-y-1/2"
-          type="submit"
-          size="icon"
-        >
-          <Send />
-        </Button>
-      </form>
-      <p className="mt-2 text-center text-xs">
-        Take responses with a grain of salt. Messages are shared with{" "}
-        <a className="underline" href="https://www.anthropic.com">
-          Anthropic
-        </a>{" "}
-        and not stored.
-      </p>
+      <footer className="flex flex-col gap-2 p-2">
+        {error && (
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Uh oh</AlertTitle>
+            <AlertDescription className="flex flex-col">
+              An unexpected error occurred while sending your message.
+              <Button
+                variant="outline"
+                size="sm"
+                className="mt-2 w-min"
+                onClick={() => reload()}
+              >
+                Try again
+              </Button>
+            </AlertDescription>
+          </Alert>
+        )}
+        <form className="relative" onSubmit={handleSubmit}>
+          <ChatInput
+            className="w-full pr-12"
+            value={input}
+            onChange={handleInputChange}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault();
+                handleSubmit(event);
+              }
+            }}
+          />
+          <Button
+            className="absolute right-2 top-1/2 -translate-y-1/2"
+            type="submit"
+            size="icon"
+          >
+            <Send />
+          </Button>
+        </form>
+        <p className="text-center text-xs">
+          Take responses with a grain of salt. Messages are shared with{" "}
+          <a className="underline" href="https://www.anthropic.com">
+            Anthropic
+          </a>{" "}
+          and not stored.
+        </p>
+      </footer>
     </div>
   );
 }
