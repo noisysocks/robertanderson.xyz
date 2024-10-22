@@ -9,6 +9,7 @@ import {
   ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -23,21 +24,32 @@ type InterfaceContext = {
 const InterfaceContext = createContext<InterfaceContext | undefined>(undefined);
 
 export function Interface({
-  sidebarOpen = false,
+  openSidebar = false,
   children,
 }: {
-  sidebarOpen?: boolean;
+  openSidebar?: boolean;
   children: ReactNode;
 }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(sidebarOpen);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const isMobile = useIsMobile(true);
+
+  // Only open sidebar by default on desktop.
+  useEffect(() => {
+    if (!isMobile && openSidebar) {
+      setIsSidebarOpen(true);
+    }
+  }, [isMobile, openSidebar]);
+
   const toggleSidebar = useCallback(
     () => setIsSidebarOpen((prev) => !prev),
     [],
   );
+
   const context = useMemo(
     () => ({ isSidebarOpen, toggleSidebar }),
     [isSidebarOpen, toggleSidebar],
   );
+
   return (
     <InterfaceContext.Provider value={context}>
       {children}
@@ -63,14 +75,14 @@ export function InterfaceSidebar({
 
   if (isSidebarOpen && isMobile) {
     return (
-      <>
-        <header className="flex gap-1 border-b p-4">
+      <aside className="flex h-screen flex-col bg-secondary">
+        <header className="flex gap-1 border-b bg-background p-4">
           <Button onClick={toggleSidebar} variant="outline" size="icon">
             <X />
           </Button>
         </header>
-        {children}
-      </>
+        {typeof children === "function" ? children() : children}
+      </aside>
     );
   }
 
@@ -78,7 +90,7 @@ export function InterfaceSidebar({
     <AnimatePresence>
       {isSidebarOpen && (
         <motion.aside
-          className={`fixed h-full border-r bg-secondary print:hidden`}
+          className="fixed flex h-full flex-col border-r bg-secondary print:hidden"
           initial={{ x: -SIDEBAR_WIDTH }}
           animate={{ x: 0 }}
           exit={{ x: -SIDEBAR_WIDTH }}
@@ -95,10 +107,14 @@ export function InterfaceSidebar({
 export function InterfaceToolbar({ children }: { children: ReactNode }) {
   const { isSidebarOpen } = useInterface();
   const isMobile = useIsMobile();
-  if (isSidebarOpen && isMobile) return null;
+
+  if (isSidebarOpen && isMobile) {
+    return null;
+  }
+
   return (
     <motion.header
-      className="fixed right-0 top-0 z-10 flex gap-1 border-b bg-card/75 p-4 backdrop-blur lg:pointer-events-none lg:border-none lg:bg-transparent lg:backdrop-blur-none print:hidden [&_*]:pointer-events-auto"
+      className="fixed right-0 top-0 z-10 flex gap-1 border-b bg-background/75 p-4 backdrop-blur lg:pointer-events-none lg:border-none lg:bg-transparent lg:backdrop-blur-none print:hidden [&_*]:pointer-events-auto"
       initial={{ left: 0 }}
       animate={{
         left: isSidebarOpen ? SIDEBAR_WIDTH : 0,
@@ -113,7 +129,11 @@ export function InterfaceToolbar({ children }: { children: ReactNode }) {
 export function InterfaceContent({ children }: { children: ReactNode }) {
   const { isSidebarOpen } = useInterface();
   const isMobile = useIsMobile();
-  if (isSidebarOpen && isMobile) return null;
+
+  if (isSidebarOpen && isMobile) {
+    return null;
+  }
+
   return (
     <motion.main
       className="screen:absolute screen:right-0 screen:mt-[57px] screen:lg:mt-0"

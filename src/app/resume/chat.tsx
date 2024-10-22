@@ -36,7 +36,7 @@ export function Chat({ initialMessage }: { initialMessage?: string }) {
   });
 
   return (
-    <div className="flex h-full flex-col">
+    <>
       <ChatMessageList>
         {messages.map((message) => {
           const variant = message.role == "user" ? "sent" : "received";
@@ -111,6 +111,6 @@ export function Chat({ initialMessage }: { initialMessage?: string }) {
           </a>
         </p>
       </footer>
-    </div>
+    </>
   );
 }

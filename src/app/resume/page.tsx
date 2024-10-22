@@ -18,7 +18,7 @@ export default async function ResumePage({
   const prompt = typeof chat === "string" ? await getPrompt(chat) : undefined;
   return (
     <div>
-      <Interface sidebarOpen={!!chat}>
+      <Interface openSidebar={!!chat}>
         <ChatSidebar initialMessage={prompt?.prompt} />
         <InterfaceToolbar>
           <ToolbarControls />
