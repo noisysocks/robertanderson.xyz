@@ -26,7 +26,7 @@ export function AdminSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname === "/admin/documents"}
+                  isActive={pathname.startsWith("/admin/documents")}
                 >
                   <Link href="/admin/documents">
                     <FileText />
