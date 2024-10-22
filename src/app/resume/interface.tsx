@@ -98,7 +98,7 @@ export function InterfaceToolbar({ children }: { children: ReactNode }) {
   if (isSidebarOpen && isMobile) return null;
   return (
     <motion.header
-      className="fixed right-0 top-0 z-10 flex gap-1 border-b bg-card/75 p-4 backdrop-blur lg:border-none lg:bg-transparent lg:backdrop-blur-none print:hidden"
+      className="fixed right-0 top-0 z-10 flex gap-1 border-b bg-card/75 p-4 backdrop-blur lg:pointer-events-none lg:border-none lg:bg-transparent lg:backdrop-blur-none print:hidden [&_*]:pointer-events-auto"
       initial={{ left: 0 }}
       animate={{
         left: isSidebarOpen ? SIDEBAR_WIDTH : 0,
