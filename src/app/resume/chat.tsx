@@ -102,7 +102,13 @@ export function Chat({ initialMessage }: { initialMessage?: string }) {
           <a className="underline" href="https://www.anthropic.com">
             Anthropic
           </a>{" "}
-          and not stored.
+          and not stored.{" "}
+          <a
+            className="underline"
+            href="https://github.com/noisysocks/robertanderson.xyz"
+          >
+            View source
+          </a>
         </p>
       </footer>
     </div>
