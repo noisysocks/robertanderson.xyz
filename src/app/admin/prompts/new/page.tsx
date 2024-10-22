@@ -8,6 +8,11 @@ import {
 } from "@/components/ui/breadcrumb";
 import { PromptForm } from "../form";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Robert Anderson · Admin · Prompts · New prompt",
+};
 
 export default function NewPromptPage() {
   return (

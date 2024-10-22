@@ -3,6 +3,11 @@ import { Interface, InterfaceContent, InterfaceToolbar } from "./interface";
 import { Resume } from "./resume";
 import { ToolbarControls } from "./toolbar-controls";
 import { ChatSidebar } from "./chat-sidebar";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Robert Anderson · Resume",
+};
 
 export default async function ResumePage({
   searchParams,

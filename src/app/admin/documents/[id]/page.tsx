@@ -12,6 +12,11 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Robert Anderson · Admin · Prompts · Edit document",
+};
 
 export default async function EditDocumentPage({
   params,

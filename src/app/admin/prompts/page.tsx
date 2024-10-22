@@ -19,7 +19,12 @@ import { db } from "@/db";
 import { prompts } from "@/db/schema";
 import { sql } from "drizzle-orm";
 import { Pencil, Plus } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Robert Anderson · Admin · Prompts",
+};
 
 export default async function PromptsPage() {
   const rows = await db

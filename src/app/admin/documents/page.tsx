@@ -19,7 +19,12 @@ import { db } from "@/db";
 import { documents } from "@/db/schema";
 import { sql } from "drizzle-orm";
 import { Pencil, Plus } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Robert Anderson · Admin · Documents",
+};
 
 export default async function DocumentsPage() {
   const rows = await db

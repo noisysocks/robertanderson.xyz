@@ -8,6 +8,11 @@ import {
 } from "@/components/ui/breadcrumb";
 import { DocumentForm } from "../form";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Robert Anderson · Admin · Prompts · New document",
+};
 
 export default function NewDocumentPage() {
   return (

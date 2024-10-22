@@ -12,6 +12,21 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: number };
+}): Promise<Metadata> {
+  const prompt = await db.query.prompts.findFirst({
+    where: eq(prompts.id, params.id),
+  });
+
+  return {
+    title: `Robert Anderson · Admin · Prompts · Edit ${prompt?.slug}`,
+  };
+}
 
 export default async function EditPromptPage({
   params,
