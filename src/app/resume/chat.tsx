@@ -11,6 +11,7 @@ import { ChatMessageList } from "@/components/ui/chat/chat-message-list";
 import { cn } from "@/lib/utils";
 import { useChat } from "ai/react";
 import { AlertCircle, Send } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export function Chat({ initialMessage }: { initialMessage?: string }) {
   const {
@@ -35,9 +36,19 @@ export function Chat({ initialMessage }: { initialMessage?: string }) {
     keepLastMessageOnError: true,
   });
 
+  // Scroll to bottom when new messages are added.
+  const messageListRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (messageListRef.current) {
+      messageListRef.current.scrollTop =
+        messageListRef.current.scrollHeight -
+        messageListRef.current.clientHeight;
+    }
+  }, [messages]);
+
   return (
     <>
-      <ChatMessageList>
+      <ChatMessageList ref={messageListRef}>
         {messages.map((message) => {
           const variant = message.role == "user" ? "sent" : "received";
           return (
