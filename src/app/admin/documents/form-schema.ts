@@ -1,5 +1,3 @@
-import { documents } from "@/db/schema";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 // Doesn't work because createInsertSchema seems to not like the vector type.
