@@ -4,7 +4,14 @@ import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 
 const SIDEBAR_WIDTH = 350;
 
@@ -23,9 +30,16 @@ export function Interface({
   children: ReactNode;
 }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(sidebarOpen);
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const toggleSidebar = useCallback(
+    () => setIsSidebarOpen((prev) => !prev),
+    [],
+  );
+  const context = useMemo(
+    () => ({ isSidebarOpen, toggleSidebar }),
+    [isSidebarOpen, toggleSidebar],
+  );
   return (
-    <InterfaceContext.Provider value={{ isSidebarOpen, toggleSidebar }}>
+    <InterfaceContext.Provider value={context}>
       {children}
     </InterfaceContext.Provider>
   );
@@ -39,7 +53,11 @@ export function useInterface() {
   return context;
 }
 
-export function InterfaceSidebar({ children }: { children: ReactNode }) {
+export function InterfaceSidebar({
+  children,
+}: {
+  children: ReactNode | (() => ReactNode);
+}) {
   const { isSidebarOpen, toggleSidebar } = useInterface();
   const isMobile = useIsMobile();
 
@@ -67,7 +85,7 @@ export function InterfaceSidebar({ children }: { children: ReactNode }) {
           style={{ width: SIDEBAR_WIDTH }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
         >
-          {children}
+          {typeof children === "function" ? children() : children}
         </motion.aside>
       )}
     </AnimatePresence>

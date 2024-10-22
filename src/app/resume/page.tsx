@@ -1,13 +1,8 @@
 import { getPrompt } from "@/lib/prompts";
-import { Chat } from "./chat";
-import {
-  Interface,
-  InterfaceContent,
-  InterfaceSidebar,
-  InterfaceToolbar,
-} from "./interface";
+import { Interface, InterfaceContent, InterfaceToolbar } from "./interface";
 import { Resume } from "./resume";
 import { ToolbarControls } from "./toolbar-controls";
+import { ChatSidebar } from "./chat-sidebar";
 
 export default async function ResumePage({
   searchParams,
@@ -19,9 +14,7 @@ export default async function ResumePage({
   return (
     <div>
       <Interface sidebarOpen={!!chat}>
-        <InterfaceSidebar>
-          <Chat initialMessage={prompt?.prompt} />
-        </InterfaceSidebar>
+        <ChatSidebar initialMessage={prompt?.prompt} />
         <InterfaceToolbar>
           <ToolbarControls />
         </InterfaceToolbar>
