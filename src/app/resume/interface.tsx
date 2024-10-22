@@ -75,7 +75,7 @@ export function InterfaceSidebar({
 
   if (isSidebarOpen && isMobile) {
     return (
-      <aside className="flex h-screen flex-col bg-secondary">
+      <aside className="flex h-dvh flex-col bg-secondary">
         <header className="flex gap-1 border-b bg-background p-4">
           <Button onClick={toggleSidebar} variant="outline" size="icon">
             <X />

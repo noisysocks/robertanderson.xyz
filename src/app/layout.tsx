@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
@@ -15,6 +15,13 @@ const sourceSerif4 = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: "Robert Anderson",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
