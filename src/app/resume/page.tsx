@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 export default async function ResumePage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const { chat } = searchParams;
+  const { chat } = await searchParams;
   const prompt = typeof chat === "string" ? await getPrompt(chat) : undefined;
   return (
     <div>

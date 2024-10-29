@@ -1,7 +1,8 @@
 import { headers } from "next/headers";
 
-export function checkAdminAuth() {
-  const authorization = headers().get("Authorization");
+export async function checkAdminAuth() {
+  const headersList = await headers();
+  const authorization = headersList.get("Authorization");
 
   if (!authorization) {
     return false;

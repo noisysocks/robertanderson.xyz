@@ -21,10 +21,12 @@ export const metadata: Metadata = {
 export default async function EditDocumentPage({
   params,
 }: {
-  params: { id: number };
+  params: Promise<{ id: number }>;
 }) {
+  const { id } = await params;
+
   const document = await db.query.documents.findFirst({
-    where: eq(documents.id, params.id),
+    where: eq(documents.id, id),
   });
 
   if (!document) {

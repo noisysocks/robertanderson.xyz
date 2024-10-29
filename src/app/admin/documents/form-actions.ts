@@ -14,7 +14,8 @@ export async function saveDocument(
   id: number | undefined,
   formData: z.infer<typeof documentFormSchema>,
 ) {
-  if (!checkAdminAuth()) {
+  const isAdmin = await checkAdminAuth();
+  if (!isAdmin) {
     throw new Error("Unauthorized");
   }
 
@@ -30,7 +31,8 @@ export async function saveDocument(
 }
 
 export async function deleteDocument(id: number) {
-  if (!checkAdminAuth()) {
+  const isAdmin = await checkAdminAuth();
+  if (!isAdmin) {
     throw new Error("Unauthorized");
   }
 

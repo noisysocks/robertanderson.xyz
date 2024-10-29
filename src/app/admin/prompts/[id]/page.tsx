@@ -17,10 +17,12 @@ import { Metadata } from "next";
 export async function generateMetadata({
   params,
 }: {
-  params: { id: number };
+  params: Promise<{ id: number }>;
 }): Promise<Metadata> {
+  const { id } = await params;
+
   const prompt = await db.query.prompts.findFirst({
-    where: eq(prompts.id, params.id),
+    where: eq(prompts.id, id),
   });
 
   return {
@@ -31,10 +33,12 @@ export async function generateMetadata({
 export default async function EditPromptPage({
   params,
 }: {
-  params: { id: number };
+  params: Promise<{ id: number }>;
 }) {
+  const { id } = await params;
+
   const prompt = await db.query.prompts.findFirst({
-    where: eq(prompts.id, params.id),
+    where: eq(prompts.id, id),
   });
 
   if (!prompt) {

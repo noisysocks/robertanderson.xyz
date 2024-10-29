@@ -14,7 +14,8 @@ export async function savePrompt(
   id: number | undefined,
   formData: z.infer<typeof promptFormSchema>,
 ) {
-  if (!checkAdminAuth()) {
+  const isAdmin = await checkAdminAuth();
+  if (!isAdmin) {
     throw new Error("Unauthorized");
   }
 
@@ -30,7 +31,8 @@ export async function savePrompt(
 }
 
 export async function deletePrompt(id: number) {
-  if (!checkAdminAuth()) {
+  const isAdmin = await checkAdminAuth();
+  if (!isAdmin) {
     throw new Error("Unauthorized");
   }
 
